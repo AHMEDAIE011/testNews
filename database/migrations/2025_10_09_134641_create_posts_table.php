@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('slug');
             $table->longText('desc');
-            $table->boolean('comment_able')->default(1);
+            $table->string('slug');
             $table->boolean('status')->default(1);
+            $table->boolean('comment_able')->default(1);
             $table->bigInteger('num_of_views')->default(0);
 
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');

@@ -23,11 +23,14 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+
+          $keywords =['news-350x223-1.jpg','news-350x223-2.jpg','news-350x223-3.jpg','news-350x223-4.jpg','news-350x223-5.jpg','news-450x350-1.jpg','news-450x350-2.jpg'];
+            $keyword = fake()->randomElement($keywords);
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'username' => fake()->userName(),
-            'image' => fake()->imageUrl(640, 480, 'posts', true),
+            'image' => 'assets/front/img/' . $keyword,
             'status' => fake()->randomElement([1,0]),
 
 
