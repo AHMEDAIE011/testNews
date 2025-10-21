@@ -42,7 +42,7 @@
           <input name="title" type="text" class="form-control mb-2 post-title" value="{{ $post->title }}" readonly />
 
           <!-- Editable Content -->
-          <textarea name="desc" class="form-control mb-2 post-content" readonly>
+          <textarea id="postContent" name="desc" class="form-control mb-2 post-content" readonly>
 {{ $post->desc }}
             </textarea>
 
@@ -54,13 +54,17 @@
           </div>
 
           <!-- Image Upload Input for Editing -->
-          <input type="file" name="images[]"  class="form-control mt-2 edit-post-image" accept="image/*" multiple />
+          <input id="postImage" type="file" name="images[]"  class="form-control mt-2 edit-post-image" accept="image/*" multiple />
 
           <!-- Editable Category Dropdown -->
           <select class="form-control mb-2 post-category">
-            <option value="general" selected>General</option>
-            <option value="tech">Tech</option>
-            <option value="life">Life</option>
+              <option value="{{$post->category->id}}" selected>{{$post->category->name}}</option>
+              @foreach ($categories as $category)
+              <option style="@if ($category->id == $post->category->id )
+display:none;
+              @endif" value="{{$category->id}}">{{$category->name}}</option>
+
+           @endforeach
           </select>
 
           <!-- Editable Enable Comments Checkbox -->
@@ -93,7 +97,7 @@
             </button>
           </div>
 
-      
+
         </li>
         <!-- Additional posts will be added dynamically -->
         </form>
@@ -103,3 +107,28 @@
 </div>
 
 @endsection
+@push('js')
+<script>
+
+
+
+    $(function(){
+
+        $("#postImage").fileinput({
+            theme: 'fa5',
+            maxFileCount: 5,
+            allowedFileTypes: ['image'],
+            showUpload: false,
+            showCancel:false,
+        });
+        $("#postContent").summernote({
+            height: 300,
+        });
+    });
+
+
+
+
+
+</script>
+@endpush

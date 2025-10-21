@@ -42,7 +42,7 @@
           <!-- Add Post Section -->
           <section id="add-post" class="add-post-section mb-5">
               <h2>Add Post</h2>
-              
+
                 @if (session()->has('errors'))
                     <div class="alert alert-danger">
                         @foreach (session('errors')->all() as $error)
@@ -52,7 +52,7 @@
                 @endif
 
              <form action="{{ route('front.user.getPostForm') }}" enctype="multipart/form-data" method="post">
-                @csrf 
+                @csrf
                 <div class="post-form p-3 border rounded">
                   <!-- Post Title -->
                   <input name="title" type="text" id="postTitle" class="form-control mb-2" placeholder="Post Title" />
@@ -81,7 +81,7 @@
 
                   <!-- Post Button -->
                   <button type="submit" class="btn btn-primary post-btn">Post</button>
-              </div>   
+              </div>
              </form>
           </section>
 
@@ -90,7 +90,7 @@
               <h2>Recent Posts</h2>
               <div class="post-list">
                 @forelse ($posts as $post)
-                    
+
                   <!-- Post Item -->
                   <div class="post-item mb-4 p-3 border rounded">
                       <div class="post-header d-flex align-items-center mb-2">
@@ -120,7 +120,7 @@
                                     </p> --}}
                                   </div>
                               </div>
-                                
+
                             @endforeach
 
 
@@ -151,14 +151,14 @@
                               <a href="" class="btn btn-sm btn-outline-primary">
                                   <i class="fas fa-thumbs-up"></i> Delete
                               </a>
-                              <button class="btn btn-sm btn-outline-secondary">
+                              <button id="getComments" class="btn btn-sm btn-outline-secondary">
                                   <i class="fas fa-comment"></i> Comments
                               </button>
                           </div>
                       </div>
 
                         <!-- Display Comments -->
-                        <div class="comments">
+                        <div class="comments" style="display: none" id="disblay_{{ $post->id }}"    >
                               <div class="comment">
                                   <img src="{{ asset(auth()->user()->image) }}" alt="User Image" class="comment-img" />
                                   <div class="comment-content">
@@ -183,3 +183,28 @@
 </div>
 <!-- Profile End -->
 @endsection
+@push('js')
+<script>
+
+
+
+    $(function(){
+
+        $("#postImage").fileinput({
+            theme: 'fa5',
+            maxFileCount: 5,
+            allowedFileTypes: ['image'],
+            showUpload: false,
+            showCancel:false,
+        });
+        $("#postContent").summernote({
+            height: 300,
+        });
+    });
+
+
+
+
+
+</script>
+@endpush

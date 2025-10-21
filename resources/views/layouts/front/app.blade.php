@@ -38,6 +38,8 @@
 
     <!-- Template Stylesheet -->
     <link href="{{asset('assets/front')}}/css/style.css" rel="stylesheet" />
+    <link href="{{asset('assets/front/vendor/file-input/css/fileinput.min.css')}}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('assets/front/vendor/summernote/summernote-bs4.min.css') }}">
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
@@ -49,7 +51,7 @@
     @yield('body')
     @include('layouts.front.footer')
 
-   
+
     <!-- Back to Top -->
     <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
@@ -58,6 +60,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="{{asset('assets/front')}}/lib/easing/easing.min.js"></script>
     <script src="{{asset('assets/front')}}/lib/slick/slick.min.js"></script>
+    
+    <script src="{{ asset('assets/front/vendor/file-input/js/fileinput.min.js') }}"></script>
+    <script src="{{ asset('assets/front/vendor/file-input/themes/fa5/theme.js') }}"  type="text/javascript"></script>
+    <script src="{{ asset('assets/front/vendor/summernote/summernote-bs4.min.js') }}"></script>
 
     <!-- Template Javascript -->
     <script src="{{asset('assets/front')}}/js/main.js"></script>
